@@ -1,2 +1,6 @@
 <!--pages/find/find.wxml-->
-<text>pages/find/find.wxml</text>
+<view class="songlist-container">
+  <block wx:for="{{songlist}}">
+    <s-songlist songlist="{{item}}"></s-songlist>
+  </block>
+</view>

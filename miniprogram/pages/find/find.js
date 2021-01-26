@@ -5,7 +5,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    songlist:[
+      {
+        "id":"1",
+        "name":"寄给你",
+        "author":"YeGer."
+      },
+      {
+        "id":"2",
+        "name":"当流星坠落的时候",
+        "author":"李俊宜 (宜宝)"
+      },
+      {
+        "id":"3",
+        "name":"趁着雨天偷只猫",
+        "author":"浦东老农民/ReDbuff"
+      },
+      {
+        "id":"4",
+        "name":"海隅日记",
+        "author":"Alpha Gun"
+      }
+    ]
   },
 
   /**

@@ -1,0 +1,30 @@
+/* components/songlist/songlist.wxss */
+.songlist-container{
+  height: 120rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.songlist-id{
+  padding: 50rpx 80rpx 20rpx 30rpx;
+  font-size: 36rpx;
+  color: grey;
+}
+
+.songlist-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20rpx 0 0 20rpx;
+}
+
+.songlist-name{
+  font-size: 36rpx;
+  
+}
+
+.songlist-author{
+  font-size: 24rpx;
+  color: grey;
+}
+

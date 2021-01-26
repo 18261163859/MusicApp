@@ -1,0 +1,14 @@
+<!--components/songlist/songlist.wxml-->
+<view class="songlist-container">
+  <text class="songlist-id">{{songlist.id}}</text>
+  <view class="songlist-content">
+    <text class="songlist-name">{{songlist.name}}</text>
+    <text class="songlist-author">{{songlist.author}}</text>
+  </view>
+
+  <!-- <text class="songlist-id">1</text>
+  <view class="songlist-content">
+    <text class="songlist-name">他夏了夏天</text>
+    <text class="songlist-author">苏打绿 - 夏 / 狂热</text>
+  </view> -->
+</view>

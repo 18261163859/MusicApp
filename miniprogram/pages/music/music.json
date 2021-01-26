@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "s-playlist":"/components/playlist/playlist",
+    "s-songlist":"/components/songlist/songlist"
+  },
+  "navigationBarTitleText": "音乐"
 }
