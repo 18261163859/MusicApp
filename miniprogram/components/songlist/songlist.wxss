@@ -7,7 +7,7 @@
 }
 
 .songlist-id{
-  padding: 50rpx 80rpx 20rpx 30rpx;
+  padding: 40rpx 60rpx 20rpx 30rpx;
   font-size: 36rpx;
   color: grey;
 }
@@ -15,17 +15,30 @@
 .songlist-content{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 20rpx 0 0 20rpx;
+  /* justify-content: space-between; */
+  padding: 25rpx 0 0 25rpx;
 }
 
 .songlist-name{
-  font-size: 36rpx;
-  
+  font-size: 32rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .songlist-author{
-  font-size: 24rpx;
+  font-size: 22rpx;
   color: grey;
+  margin-top: 10rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+.playing view,.playing text{
+  color: #d43c33;
+}

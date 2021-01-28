@@ -1,4 +1,6 @@
 // audio.js
+const MAX_LIMIT=15
+const db=wx.cloud.database()
 Page({
   onReady: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
@@ -79,14 +81,31 @@ Page({
       title: '加载中',
     })
     wx.cloud.callFunction({
-      name:'playlist'
-    }).then(res=>{
+      name:'music',
+      data:{
+        $url:'playlist',
+        start:this.data.playlist.length,
+        count:MAX_LIMIT,
+      }
+    }).then((res)=>{
       console.log(res)
       this.setData({
-        playlist:res.result
+        playlist:this.data.playlist.concat(res.result.data)
+      })
+      wx.stopPullDownRefresh({
+        success: (res) => {},
       })
       wx.hideLoading()
     })
+  },
+  onPullDownRefresh:function(){
+    this.setData({
+      playlist:[]
+    })
+    this._getPlaylist()
+  },
+  onReachBottom:function(){
+    this._getPlaylist()
   }
 
 })

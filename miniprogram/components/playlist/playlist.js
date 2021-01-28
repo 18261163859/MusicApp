@@ -20,6 +20,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    goToMusiclist(){
+      wx.navigateTo({
+        url: `../../pages/musiclist/musiclist?playlistId=${this.properties.playlist.id}`,
+      })
+    }
   }
 })

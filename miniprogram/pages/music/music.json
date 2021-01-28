@@ -3,5 +3,6 @@
     "s-playlist":"/components/playlist/playlist",
     "s-songlist":"/components/songlist/songlist"
   },
-  "navigationBarTitleText": "音乐"
+  "navigationBarTitleText": "音乐",
+  "enablePullDownRefresh": true
 }

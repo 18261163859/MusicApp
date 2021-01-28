@@ -1,14 +1,11 @@
 <!--components/songlist/songlist.wxml-->
-<view class="songlist-container">
-  <text class="songlist-id">{{songlist.id}}</text>
+<block wx:for="{{songlist}}" key="id">
+  <view class="songlist-container {{item.id===playingId ? 'playing':''}}"  bind:tap="onSelect" data-musicid="{{item.id}}" data-index="{{index}}">
+  <text class="songlist-id" bind:tap="fun1">{{index+1}}</text>
   <view class="songlist-content">
-    <text class="songlist-name">{{songlist.name}}</text>
-    <text class="songlist-author">{{songlist.author}}</text>
+    <view class="songlist-name">{{item.al.name}}</view>
+    <view class="songlist-author">{{item.ar[0].name}} - {{item.al.name}}</view>
   </view>
-
-  <!-- <text class="songlist-id">1</text>
-  <view class="songlist-content">
-    <text class="songlist-name">他夏了夏天</text>
-    <text class="songlist-author">苏打绿 - 夏 / 狂热</text>
-  </view> -->
 </view>
+</block>
+
