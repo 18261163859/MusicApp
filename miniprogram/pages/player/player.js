@@ -1,11 +1,13 @@
 // miniprogram/pages/player/player.js
+let musiclist=[]
+let playingIndex=0
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    picUrl:''
   },
 
   /**
@@ -13,6 +15,28 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    playingIndex=options.index
+    musiclist=wx.getStorageSync('musiclist')
+    this._loadMusicDetail(options.musicId)
+  },
+  _loadMusicDetail(musicId){
+    let music=musiclist[playingIndex]
+    console.log(music)
+    wx.setNavigationBarTitle({
+      title: music.name,
+    })
+    this.setData({
+      picUrl:music.al.picUrl
+    })
+    wx.cloud.callFunction({
+      name:'music',
+      data:{
+        musicId,
+        $url:'musicUrl',
+      }
+    }).then(res=>{
+      console.log(res)
+    })
   },
 
   /**
