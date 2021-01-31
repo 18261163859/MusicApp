@@ -1,3 +1,11 @@
+
+<s-navbar bgStyle="background-color:#ffffff">
+  <!-- <image src="../../images/tab/back.png" slot="left" style="width:50rpx;height:50rpx"></image> -->
+  <view slot="content" style="display:flex;fflex-direction: column;align-items:center">
+    <text class="iconfont icon-search" style="padding:10rpx"></text>
+    <input type="text" class="searchBar" />
+  </view>
+</s-navbar>
 <swiper indicator-dots="true" indicator-active-color="#d43c33" autoplay="true" interval="3000" duration="1000" class="swiper">
   <swiper-item wx:for="{{imgUrls}}">
     <image src="{{item.url}}" class="img" mode="scaleToFill"/>

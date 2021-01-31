@@ -8,11 +8,8 @@
     "pages/player/player"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#d43c33",
-    "navigationBarTitleText": "云音乐",
-    "navigationBarTextStyle": "white"
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#474747",

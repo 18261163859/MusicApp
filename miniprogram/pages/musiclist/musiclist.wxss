@@ -5,6 +5,10 @@
   opacity: 0.4;
 }
 
+.title{
+  position: relative;
+}
+
 .detail-mask{
   position: absolute;
   width: 100%;

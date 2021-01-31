@@ -1,15 +1,33 @@
-<view wx:if="{{picUrl}}" class="player-container" style="background:url({{picUrl}}) center/cover no-repeat"></view>
-<view class="player-mask"></view>
 
+
+  <view wx:if="{{picUrl}}" class="player-container" style="background:url({{picUrl}}) center/cover no-repeat"></view>
+<view class="player-mask"></view>
+<s-navbar >
+  <view slot="left">
+    <image bind:tap="toBack" src="../../images/tab/back.png" slot="left" style="width:50rpx;height:50rpx"></image> 
+  </view>
+  <view slot="content" class="column">
+    <text style="font-size:26rpx">{{title}}</text>
+    <text style="font-size:20rpx">{{singer}}</text>
+  </view>
+</s-navbar>
 <view class="player-info">
-  <view class="player-disc">
-    <image class="player-img" src="{{picUrl}}"></image>
+  <view class="player-disc {{isPlaying?'playing':''}}">
+    <image class="player-img zhuan {{isPlaying?'':'ting'}}" src="{{picUrl}}"></image>
+  </view>
+
+  <view class="silder">
+    <text>{{currentTime}}</text>
+    <slider class="s" bindchange='dragAudioSlider' activeColor='red' block-size="12" value='{{progress}}' />
+    <text>{{totalTime}}</text>
   </view>
 
     <view class="control">
-      <text class="iconfont icon-shangyishou"></text>
-      <text class="iconfont icon-bofang"></text>
-      <text class="iconfont icon-xiayishou"></text>
+      
+      <text class="iconfont icon-shangyishou" bind:tap="onPrev"></text>
+      <text class="iconfont {{isPlaying?'icon-zanting':'icon-bofang'}}" bind:tap="togglePlaying"></text>
+      <text class="iconfont icon-xiayishou" bind:tap="onNext"></text>
     </view>
 </view>
+
 

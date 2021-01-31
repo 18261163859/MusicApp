@@ -1,13 +1,20 @@
 // miniprogram/pages/player/player.js
 let musiclist=[]
 let playingIndex=0
+const backgroundAudioManager=wx.getBackgroundAudioManager()
+var mytime=null
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    picUrl:''
+    picUrl:'',
+    isPlaying:false,
+    progress:0,
+    currentTime:'00:00',
+    totalTime:'99:99',
+    currentSecond:0
   },
 
   /**
@@ -18,6 +25,7 @@ Page({
     playingIndex=options.index
     musiclist=wx.getStorageSync('musiclist')
     this._loadMusicDetail(options.musicId)
+    
   },
   _loadMusicDetail(musicId){
     let music=musiclist[playingIndex]
@@ -36,9 +44,112 @@ Page({
       }
     }).then(res=>{
       console.log(res)
+      const url=res.result.data[0].url
+      if(url===null){
+        wx.showToast({
+          title: '没有权限播放',
+        })
+        backgroundAudioManager.pause()
+        this.setData({
+          isPlaying:false
+        })
+        return
+      }
+      this.setData({
+        isPlaying:true,
+        title:music.name,
+        singer:music.ar[0].name
+      })
+      backgroundAudioManager.src=url
+      backgroundAudioManager.title=music.name
+      backgroundAudioManager.coverImgUrl=music.al.picUrl
+      backgroundAudioManager.singer=music.ar[0].name
+      let _this=this;
+      setTimeout(x=>{
+        let s=backgroundAudioManager.duration
+        console.log(s)
+       _this.setData({
+          totalTime:parseInt(s/60)+':'+parseInt(s%60)
+       })
+      },1000)
+      this.start()
     })
   },
+  dragAudioSlider(e){
+    console.log('####'+e.detail.value)
+    backgroundAudioManager.seek(e.detail.value)
+    let s=(parseFloat(e.detail.value))/100*parseInt(backgroundAudioManager.duration)
+    this.setData({
+      currentTime:(parseInt(s/60)<10?('0'+parseInt(s/60)):parseInt(s/60))+':'+(parseInt(s%60)<10?('0'+parseInt(s%60)):parseInt(s%60)),
+      currentSecond:parseInt(backgroundAudioManager.duration*parseFloat(e.detail.value/100))
+    })
+  },
+  togglePlaying(){
+    if(this.data.isPlaying){
+      backgroundAudioManager.pause()
+      clearInterval(mytime)
+    }
+    else{
+      backgroundAudioManager.play()
+      this.start()
+    }
+    this.setData({
+      isPlaying:!this.data.isPlaying
+    })
 
+  },
+  onPrev(){
+    playingIndex--;
+    if(playingIndex===-1){
+      playingIndex=musiclist.length-1
+    }
+    clearInterval(mytime)
+    this.setData({
+      progress:0,
+    currentTime:'00:00',
+    totalTime:'99:99',
+    currentSecond:0
+    })
+    this._loadMusicDetail(musiclist[playingIndex].id)
+  },
+  onNext(){
+    playingIndex++;
+    if(playingIndex===musiclist.length){
+      playingIndex=0
+    }
+    clearInterval(mytime)
+    this.setData({
+      progress:0,
+    currentTime:'00:00',
+    totalTime:'99:99',
+    currentSecond:0
+    })
+    this._loadMusicDetail(musiclist[playingIndex].id)
+  },
+  toBack(){
+    wx.navigateBack({
+      delta: 1,
+    })
+  },
+  start(){
+    let _this=this
+    mytime=setInterval(() => {
+      let s=_this.data.currentSecond
+      s++;
+      let ss=(s/backgroundAudioManager.duration)*100
+      console.log(s)
+      if(s>=backgroundAudioManager.duration){
+        clearInterval(mytime)
+        this.onNext()
+        return
+      }
+      _this.setData({
+        progress:ss,
+        currentSecond:s,
+        currentTime:(parseInt(s/60)<10?('0'+parseInt(s/60)):parseInt(s/60))+':'+(parseInt(s%60)<10?('0'+parseInt(s%60)):parseInt(s%60))
+      })
+    }, 1000);
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -50,7 +161,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**
