@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "s-navbar":"/components/navbar/navbar"
+    "s-navbar":"/components/navbar/navbar",
+    "s-lyric":"/components/lyric/lyric"
   }
 }

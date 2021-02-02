@@ -14,7 +14,9 @@ Page({
     progress:0,
     currentTime:'00:00',
     totalTime:'99:99',
-    currentSecond:0
+    currentSecond:0,
+    isLyricShow:false,
+    lyric:'这里是歌词'
   },
 
   /**
@@ -36,6 +38,25 @@ Page({
     this.setData({
       picUrl:music.al.picUrl
     })
+
+    wx.cloud.callFunction({
+      name:'music',
+      data:{
+        musicId,
+        $url:'lyric',
+      }
+    }).then(res=>{
+      console.log(res.result)
+      let lyric='暂无歌词'
+      const lrc=res.result.lrc
+      if(lrc){
+        lyric=lrc.lyric
+      }
+      this.setData({
+        lyric
+      })
+    })
+
     wx.cloud.callFunction({
       name:'music',
       data:{
@@ -74,6 +95,9 @@ Page({
       },1000)
       this.start()
     })
+    
+    
+
   },
   dragAudioSlider(e){
     console.log('####'+e.detail.value)
@@ -137,18 +161,29 @@ Page({
       let s=_this.data.currentSecond
       s++;
       let ss=(s/backgroundAudioManager.duration)*100
-      console.log(s)
-      if(s>=backgroundAudioManager.duration){
+      console.log("bgd="+backgroundAudioManager.duration)
+      console.log("s="+s)
+      if(s===parseInt(backgroundAudioManager.duration+1)){
+        console.log('s='+s+"-----duration="+backgroundAudioManager.duration)
         clearInterval(mytime)
         this.onNext()
         return
       }
+      this.timeUpdate(s)
       _this.setData({
         progress:ss,
         currentSecond:s,
         currentTime:(parseInt(s/60)<10?('0'+parseInt(s/60)):parseInt(s/60))+':'+(parseInt(s%60)<10?('0'+parseInt(s%60)):parseInt(s%60))
       })
     }, 1000);
+  },
+  onLyricShow(){
+    this.setData({
+      isLyricShow:!this.data.isLyricShow
+    })
+  },
+  timeUpdate(currentTime){
+    this.selectComponent('.lyric').update(currentTime)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

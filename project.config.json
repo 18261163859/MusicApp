@@ -38,7 +38,7 @@
   },
   "appid": "wxcd2c2038064b8346",
   "projectname": "cloud-music",
-  "libVersion": "2.14.1",
+  "libVersion": "2.14.4",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
