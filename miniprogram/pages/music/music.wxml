@@ -1,9 +1,15 @@
 
 <s-navbar bgStyle="background-color:#ffffff">
   <!-- <image src="../../images/tab/back.png" slot="left" style="width:50rpx;height:50rpx"></image> -->
-  <view slot="content" style="display:flex;fflex-direction: column;align-items:center">
+  <view slot="content" style="display:flex;fflex-direction: column;align-items:center;opacity:{{navOpacity}};">
+    <block wx:if="{{isTop}}" > 
     <text class="iconfont icon-search" style="padding:10rpx"></text>
     <input type="text" class="searchBar" />
+    </block>
+    <block wx:else>
+      <text>这是标题</text>
+    </block>
+    
   </view>
 </s-navbar>
 <swiper indicator-dots="true" indicator-active-color="#d43c33" autoplay="true" interval="3000" duration="1000" class="swiper">

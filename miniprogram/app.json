@@ -9,7 +9,7 @@
   ],
   "window": {
     "navigationStyle": "custom",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#474747",

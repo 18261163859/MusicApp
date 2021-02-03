@@ -27,3 +27,8 @@ page{--height:44px;--right:190rpx;}
   justify-content: center;
   
 }
+
+.navbar-bg{
+  position: absolute;
+  width: 100%;
+}

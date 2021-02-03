@@ -1,6 +1,6 @@
 /* miniprogram/pages/musiclist/musiclist.wxss */
 .detail-container{
-  height:320rpx;
+  height:420rpx;
   filter:blur(40rpx);
   opacity: 0.4;
 }
@@ -12,11 +12,13 @@
 .detail-mask{
   position: absolute;
   width: 100%;
-  height: 320rpx;
+  height: 380rpx;
   background-color: #333;
   top: 0;
   left: 0;
   z-index: -1;
+  border-radius: 0rpx 0rpx 50% 50% / 0rpx 0rpx 10rpx 10rpx !important;
+
 }
 
 .detail-info{
@@ -31,15 +33,96 @@
   align-items: center;
 }
 
-.detail-img{
-  width: 280rpx;
-  height: 280rpx;
+.img{
+  width:200rpx;
+  height: 200rpx;
   margin-right: 24rpx;
-  border-radius: 6rpx;
+  margin-top: 10rpx;
+  position: relative;
 }
 
-.detail-name{
+.detail-img{
+  width: 100%;
+  height: 95%;
+  border-radius: 20rpx;
+  position: absolute;
+  bottom: 0;
+}
+.greyBlock{
+  width: 90%;
+  height: 50%;
+  background-color: grey;
+  position: absolute;
+  border-radius: 20rpx;
+  z-index: -1;
+  left: 5%;
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+}
+.info image{
+  width:40rpx;
+  height:40rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.info-name{
   color: #ffffff;
-  font-size: 36rpx;
+  font-size: 28rpx;
   line-height: 1.5;
+  position: absolute;
+  top: 20%;
+}
+
+.info-author{
+  display: flex;
+  align-items: center;
+  color: #aaaaaa;
+  font-size: 24rpx;
+}
+.info-brief{
+  color: #aaaaaa;
+  font-size: 24rpx;
+  position: absolute;
+  bottom: 20%;
+}
+
+.operation{
+  display: flex;
+  position: absolute;
+  top: 320rpx;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #ffffff;
+  padding: 20rpx;
+  border-radius: 50rpx;
+  align-items: center;
+}
+
+.operation view{
+  display: flex;
+  align-items: center;
+  margin: 0 20rpx 0 20rpx;
+  width: 150rpx;
+  
+}
+
+.cut{
+  width: 20rpx;
+  color: #aaaaaa;
+}
+
+.operation image{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 10rpx;
+}
+
+.navbar-name{
+  white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
 }

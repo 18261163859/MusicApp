@@ -7,9 +7,9 @@
 } */
 
 .lyric-scroll{
-  margin-top: 190rpx;
+  margin-top: 160rpx;
   width: 100%;
-  height: 600rpx;
+  height: 800rpx;
   color: #ccc;
   font-size: 32rpx;
 }

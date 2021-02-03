@@ -63,6 +63,7 @@ Component({
           })
         }
       })
+      console.log(_lrcList)
       this.setData({
         lyrics:_lrcList
       })

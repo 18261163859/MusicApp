@@ -1,9 +1,14 @@
 <!--components/navbar/navbar.wxml-->
 <view class="navbar-inner {{ios ? 'ios' : 'android'}} " style="padding-top: {{statusBarHeight}}px;"></view>
 
+
+
 <view class="navbar-content" style="{{bgStyle}}">
   <view class="{{ios ? 'ios' : 'android'}}"></view>
   <view class="navbar-inner {{ios ? 'ios' : 'android'}} " style="padding-top: {{statusBarHeight}}px;">
+    <view class="navbar-bg">
+  <slot name="bg"></slot>
+</view>
       <view class="navbar-left">
         <slot name="left"></slot>
       </view>

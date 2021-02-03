@@ -6,7 +6,9 @@ Page({
    */
   data: {
     musiclist:[],
-    listInfo:{}
+    listInfo:{},
+    navOpacity:1,
+    isTop:true,
   },
 
   /**
@@ -44,6 +46,37 @@ Page({
     wx.navigateBack({
       delta: 1,
     })
+  },
+  onPageScroll(e){
+    console.log(e)
+    const scrollTop=e.scrollTop
+    let opac=0.99
+    if(scrollTop<220){
+      if(scrollTop<140){
+        opac=0.99
+      }
+      else if(scrollTop<160){
+        opac=0.8
+      }
+      else if(scrollTop<180){
+        opac=0.6
+      }
+      else if(scrollTop<200){
+        opac=0.4
+      }
+      else if(scrollTop<220){
+        opac=0.2
+      }
+      this.setData({
+        isTop:true,
+        navOpacity:opac
+      })
+    }else{
+      this.setData({
+        isTop:false,
+        navOpacity:0.99
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

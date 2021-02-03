@@ -10,6 +10,8 @@ Page({
     this._getPlaylist();
   },
   data: {
+    navOpacity:1,
+    isTop:true,
     imgUrls:[
       {
         url:'http://p1.music.126.net/nVUH7O5ZNMG1OQ1kE-tq9g==/109951165665595417.jpg?imageView&quality=89'
@@ -106,6 +108,36 @@ Page({
   },
   onReachBottom:function(){
     this._getPlaylist()
+  },
+  onPageScroll(e){
+    const scrollTop=e.scrollTop
+    let opac=1
+    if(scrollTop<185){
+      if(scrollTop<100){
+        opac=1
+      }
+      else if(scrollTop<120){
+        opac=0.8
+      }
+      else if(scrollTop<140){
+        opac=0.6
+      }
+      else if(scrollTop<160){
+        opac=0.4
+      }
+      else if(scrollTop<180){
+        opac=0.2
+      }
+      this.setData({
+        isTop:true,
+        navOpacity:opac
+      })
+    }else{
+      this.setData({
+        isTop:false,
+        navOpacity:1
+      })
+    }
   }
 
 })

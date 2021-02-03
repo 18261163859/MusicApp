@@ -1,10 +1,23 @@
 
-<s-navbar bgStyle="background-color:white">
+<s-navbar bgStyle="background-color:white" style="opacity:{{navOpacity}};">
   <view slot="left">
+    
     <image bind:tap="toBack" src="../../images/tab/back.png" slot="left" style="width:50rpx;height:50rpx"></image> 
   </view>
   <view slot="content">
-    <text>这是标题</text>
+    <block wx:if="{{isTop}}">
+      <text style="color:white">歌单</text>
+    </block>
+    <block wx:else>
+      <text class="navbar-name" style="color:white">{{listInfo.name}}</text>
+    </block>
+  </view>
+  <view slot="bg" >
+    <view class="detail-mask"></view>
+    <view wx:if="{{listInfo.coverImgUrl}}" class="detail-container"
+  style="background:url({{listInfo.coverImgUrl}}) no-repeat top/cover"
+>  
+</view>
   </view>
 </s-navbar>
 <view class="title">
@@ -15,13 +28,42 @@
 
 <view class="detail-mask"></view>
 
-
-
 <view class="detail-info">
-  <image src="{{listInfo.coverImgUrl}}" class="detail-img"></image>
-  <view class="detail-name">{{listInfo.name}}</view>
+  <view class="img">
+    <view class="greyBlock"></view>
+    <image src="{{listInfo.coverImgUrl}}" mode="scaleToFill" class="detail-img"></image>
+  </view>
+  
+  <view class="info">
+    <view class="info-name">{{listInfo.name}}</view>
+    <view class="info-author">
+      <image src="../../images/avatar/1.png"></image>
+      <text>星语梦说 ></text>
+    </view>
+    <view class="info-brief">
+      <text>编辑简介 ></text>
+    </view>
+  </view>
+
+  <view class="operation">
+    <view>
+      <image src="../../images/tab/collect.png"></image>
+      <text>收藏</text>
+    </view>
+    <text class="cut">|</text>
+    <view>
+      <image src="../../images/tab/comment.png" style="width:60rpx;height:60rpx"></image>
+      <text>评论</text>
+    </view>
+    <text class="cut">|</text>
+    <view>
+      <image src="../../images/tab/share.png"></image>
+      <text>分享</text>
+    </view>
+  </view>
 </view>
 </view>
 
+<s-songlist songlist="{{musiclist}}"></s-songlist>
 <s-songlist songlist="{{musiclist}}"></s-songlist>
 
