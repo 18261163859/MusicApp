@@ -1,6 +1,23 @@
 <!--pages/find/find.wxml-->
-<view class="songlist-container">
-  <block wx:for="{{songlist}}">
-    <s-songlist songlist="{{item}}"></s-songlist>
-  </block>
+<s-navbar bgStyle="background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);">
+  <view slot="content">
+    <text style="color:white;">发现</text>
+  </view>
+</s-navbar>
+
+<view class="header">
+  <view class="left" bind:tap="onPublish">
+    <i class="iconfont icon-edit"></i>
+  </view>
+  <view class="right">
+    <s-search bind:search="onSearch"></s-search>
+  </view>
 </view>
+
+<scroll-view class="container" scroll-y>
+    <!-- 弹出层 -->
+    <s-login modalShow="{{modalShow}}" bind:loginsuccess="onLoginSuccess" bind:loginfail="onLoginFail">
+    </s-login>
+</scroll-view>
+
+

@@ -1,1 +1,37 @@
 /* pages/find/find.wxss */
+
+page{
+  background-color: #dedede;
+}
+
+.header{
+  width:730rpx;
+  height:70rpx;
+  display: flex;
+  background-color: white;
+  padding: 10rpx;
+}
+
+.left{
+  height: 100%;
+  width:12%;
+  text-align: center;
+  padding-top: 5rpx;
+}
+
+.right{
+  height: 100%;
+  width: 88%;
+}
+
+.iconfont{
+  width: 70rpx;
+  height: 70rpx;
+  font-size: 58rpx;
+}
+
+.container {
+  margin-top: 10rpx;
+  box-sizing: border-box;
+  height: 100vh;
+}
