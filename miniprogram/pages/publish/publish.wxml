@@ -1,0 +1,31 @@
+<!--miniprogram/pages/publish/publish.wxml-->
+<s-navbar bgStyle="background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);">
+  <view class="nav-content" slot="content">
+    <text>发布</text>
+  </view>
+</s-navbar>
+
+<view class="container">
+  <textarea class="container-edit" placeholder="分享新鲜事儿..." maxlength="{{maxWordsLength}}" auto-focus bindinput="onInput" value="{{editValue}}"></textarea>
+
+  <view class="image-list">
+    <block wx:for="{{images}}" wx:key="index">
+      <view class="image-wrap">
+        <image src="{{item}}" mode="aspectFill" data-index="{{index}}" bind:tap="prevImg"></image>
+        <i class="iconfont icon-delete" data-index="{{index}}" bind:tap="delImg"></i>
+      </view>
+    </block>
+
+    <view bind:tap="addImg" class="image-wrap image-add" wx:if="{{imgsNum<maxImgsLength}}">
+      <i class="iconfont icon-add"></i>
+    </view>
+  </view>
+</view>
+
+<view class="footer">
+  <view class="words-limit">
+    <text class="words-num">{{wordsNum}}/{{maxWordsLength}}</text>
+  </view>
+  
+  <button class="btn-publish">发布</button>
+</view>

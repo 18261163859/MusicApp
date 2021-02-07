@@ -1,0 +1,89 @@
+/* miniprogram/pages/publish/publish.wxss */
+
+page{
+  background-color: #f0f0f0;
+}
+
+.nav-content text{
+  color: white;
+}
+
+.container{
+  width: 710rpx;
+  height: auto;
+  margin: 20rpx;
+}
+
+.container .container-edit{
+  width: 100%;
+  height: 300rpx;
+  background-color: white;
+  margin-bottom: 10rpx;
+}
+
+.container .image-list{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container .image-wrap{
+  width: 220rpx;
+  height: 220rpx;
+  padding: 9rpx;
+  position: relative;
+  background-color: #f0f0f0;
+}
+
+.icon-delete{
+  position: absolute;
+  right: 10rpx;
+  top: 10rpx;
+  opacity: 0.5;
+  background-color: #f0f0f0;
+}
+
+.image-list .image-add{
+  width: 220rpx;
+  height: 220rpx;
+  background-color: white;
+}
+
+.container .image-add i{
+  font-size: 90rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.container .image-wrap image{
+  width: 100%;
+  height: 100%;
+}
+
+.footer{
+  position: fixed;
+  bottom: 30rpx;
+  width: 710rpx;
+  margin-left: 20rpx;
+  height: 80rpx;
+  display: flex;
+}
+
+.footer .words-limit{
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 20rpx;
+}
+
+.footer .btn-publish{
+  width: 50%;
+  height: 100%;
+  border-radius: 15rpx;
+  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+  color: white;
+}
+
+
+

@@ -71,6 +71,12 @@
           "pathName": "pages/musiclist/musiclist",
           "query": "playlistId=146921027",
           "scene": null
+        },
+        {
+          "name": "pages/publish/publish",
+          "pathName": "pages/publish/publish",
+          "query": "",
+          "scene": null
         }
       ]
     }
