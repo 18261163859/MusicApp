@@ -1,0 +1,22 @@
+page{
+  /* 文字主色 */
+--primaryColor:#4B4B4B;
+/* 文字次色 */
+--secondaryColor:#939393;
+/* 背景色 */
+--bgColor:#fff;
+/* 边框色 */
+--borderColor:#ccc;
+/* 主要文字大小 */
+--primarySize:32rpx;
+/* 次要文字大小 */
+--secondarySize:24rpx;
+/* 边距 */
+--gap:20rpx;
+/* 大图 */
+--imgLg:230rpx;
+/* 头像小图 */
+--imgSm:64rpx;
+
+background-color: #ededed;
+}

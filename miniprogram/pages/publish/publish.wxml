@@ -1,5 +1,8 @@
 <!--miniprogram/pages/publish/publish.wxml-->
 <s-navbar bgStyle="background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);">
+  <view slot="left">
+    <image bind:tap="toBack" src="../../images/tab/back.png" slot="left" style="width:50rpx;height:50rpx"></image>
+  </view>
   <view class="nav-content" slot="content">
     <text>发布</text>
   </view>
@@ -27,5 +30,5 @@
     <text class="words-num">{{wordsNum}}/{{maxWordsLength}}</text>
   </view>
   
-  <button class="btn-publish">发布</button>
+  <button class="btn-publish" bind:tap="send">发布</button>
 </view>

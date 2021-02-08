@@ -8,6 +8,30 @@ Page({
   data: {
    //控制弹出层是否显示
    modalShow: false,
+   blogs:[]
+  },
+
+  _loadBlogList(start=0){
+    wx.showLoading({
+      title: '数据加载中',
+    })
+    wx.cloud.callFunction({
+      name:'blog',
+      data:{
+        start,
+        count:10,
+        $url:'list',
+      }
+    }).then(res=>{
+      console.log(res)
+      this.setData({
+        blogs:this.data.blogs.concat(res.result)
+      })
+      wx.hideLoading()
+      wx.stopPullDownRefresh()
+    console.log(this.data.blogs)
+
+    })
   },
   onSearch(e){
     keyword=e.detail.keyword
@@ -39,9 +63,9 @@ Page({
     console.log('>>>>>' + event)
     const detail = event.detail
     console.log(detail)
-    // wx.navigateTo({
-    //   url: '../publish/publish',
-    // })
+    wx.navigateTo({
+      url: '../publish/publish',
+    })
   },
   onLoginFail() {
     wx.showModal({
@@ -55,7 +79,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      blogs:[]
+    })
+    this._loadBlogList();
   },
 
   /**

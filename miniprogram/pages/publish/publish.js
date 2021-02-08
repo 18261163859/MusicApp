@@ -1,8 +1,13 @@
 // miniprogram/pages/publish/publish.js
+//最大字数
 const MAX_WORDS_LENGTH=140
+//最大图片数
 const MAX_IMG_LENGTH=9
+//云数据库
+const db=wx.cloud.database()
+//当前用户信息
+let userInfo={}
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -12,15 +17,11 @@ Page({
     //最大图片数
     maxImgsLength:MAX_IMG_LENGTH,
     //图片地址
-    images:[
-      'https://s-moses.oss-cn-hangzhou.aliyuncs.com/bgPicture/david-von-diemar-eLgKkKAnA4g-unsplash.jpg',
-      'https://s-moses.oss-cn-hangzhou.aliyuncs.com/bgPicture/demian-tejeda-benitez-71LzirTPurQ-unsplash.jpg',
-      'https://s-moses.oss-cn-hangzhou.aliyuncs.com/bgPicture/denys-nevozhai-Tix_89QaKVY-unsplash.jpg'
-    ],
+    images:[],
     //当前字数
     wordsNum:0,
     //当前图片数
-    imgsNum:3,
+    imgsNum:0,
     //textarea的内容
     editValue:''
   },
@@ -82,7 +83,8 @@ Page({
     dataImages.splice(delImgIndex,1)
     //赋值
     this.setData({
-      images:dataImages
+      images:dataImages,
+      imgsNum:--this.data.imgsNum
     })
   },
   //预览图片
@@ -91,17 +93,113 @@ Page({
     let prevImgIndex=e.target.dataset.index
     //备份作用域
     let _this=this
+    //调用接口
     wx.previewImage({
       urls: _this.data.images,
       current:_this.data.images[prevImgIndex]
     })
+  },
+  toBack(){
+    wx.navigateBack()
+  },
+  send(){
+    //若输入内容为空
+    if(this.data.editValue.trim().length===0){
+      wx.showModal({
+        title:'请输入内容',
+        content:''
+      })
+    } 
+    wx.showLoading({
+      title:'发布中',
+      mask:true
+    })
+
+    //promise任务数组
+    let promiseArr=[]
+    //文件id数组
+    let fileIdArr=[]
+    //遍历创建promise
+    for(let i=0;i<this.data.images.length;i++){
+      let p=new Promise((resolve,reject)=>{
+        let imgFilePath=this.data.images[i]
+        //获取到图片的后缀名(.xxx)
+        let suffix=imgFilePath.substr(imgFilePath.lastIndexOf('.'))
+        //调用云数据库接口
+        wx.cloud.uploadFile({
+          //云中存放的地址(使用时间缀避免重复)
+          cloudPath:'blog/'+Date.now()+'-'+Math.random()*1000000+suffix,
+          //要存放的文件地址
+          filePath: imgFilePath,
+          //成功
+          success:res=>{
+            //将fileIDpush到数组里
+            fileIdArr.push(res.fileID)
+            //标记成功
+            resolve()
+          },
+          //失败
+          fail:err=>{
+            console.log(err)
+            //标记失败
+            reject()
+          }
+        })
+      })
+      //Promise push到数组
+      promiseArr.push(p)
+    }
+
+    //添加到database
+    Promise.all(promiseArr).then(res=>{
+      db.collection('blog').add({
+        data:{
+          ...userInfo,
+          content:this.data.editValue,
+          imgs:fileIdArr,
+          createTime:db.serverDate()
+        }
+      })
+    }).then(res=>{
+      wx.hideLoading()
+      wx.showToast({
+        title: '发布成功',
+      })
+      wx.switchTab({
+        url: '../find/find',
+        success:function(e){
+          var page=getCurrentPages().pop()
+          page.onLoad()
+        }
+      })
+      
+    }).catch(err=>{
+      wx.hideLoading()
+      wx.showToast({
+        title: '发布失败：'+err,
+      })
+    })
+
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.getUserInfo({
+      success:res=>{
+        console.log(res)
+        let user={
+          nickName:res.userInfo.nickName,
+          avatarUrl:res.userInfo.avatarUrl
+        }
+        userInfo=user
+      },
+      fail:err=>{
+        console.log(err)
+      }
+    })
   },
 
   /**
