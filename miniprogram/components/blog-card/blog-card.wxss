@@ -7,13 +7,15 @@
   background-color: var(--bgColor);
   margin-left: 15rpx;
   margin-right: 15rpx;
-  padding: 20rpx;
+  /* padding: 20rpx 20rpx 0 20rpx; */
   margin-top: 10rpx;
+  position: relative;
 }
 
 .blog-header{
   display: flex;
   align-items: center;
+  padding: 20rpx;
 }
 
 .blog-avatar{
@@ -24,6 +26,7 @@
 
 .blog-box{
   margin-left: 20rpx;
+
 }
 
 .blog-nickName{
@@ -37,8 +40,8 @@
 }
 
 .blog-content{
-  margin-top: 30rpx;
   font-size: var(--primarySize);
+  padding: 10rpx 20rpx;
 }
 
 .image-list{
@@ -46,6 +49,7 @@
   height: auto;
   display: flex;
   flex-wrap: wrap;
+  margin: 10rpx;
 }
 
 .image-wrap{

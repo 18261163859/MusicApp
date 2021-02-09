@@ -1,0 +1,46 @@
+@import "../../global.wxss";
+
+.ctrl{
+  display: flex;
+  justify-content: space-between;
+  height: 100rpx;
+}
+.ctrl-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  background-color: #f8f8f8;
+  margin-left: 1rpx;
+}
+
+.share-btn{
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content{
+  /* position: relative; */
+}
+.comment-content{
+  text-align: left;
+  width: 620rpx;
+  padding: 20rpx;
+}
+
+.send{
+  position: absolute;
+  width: 180rpx;
+  bottom: 20rpx;
+  right: 20rpx;
+  background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
+  line-height: 68rpx;
+  font-size: var(--primarySize);
+  height: var(--primarySize)*5;
+  display: block;
+  border-radius: 10rpx;
+  color: var(--primaryColor);
+  z-index: 100;
+}

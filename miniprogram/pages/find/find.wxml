@@ -19,7 +19,7 @@
     <s-login modalShow="{{modalShow}}" bind:loginsuccess="onLoginSuccess" bind:loginfail="onLoginFail">
     </s-login>
     <block wx:for="{{blogs}}" wx:key="index">
-      <s-blogcard blog="{{item}}"></s-blogcard>
+      <s-blog-card blog="{{item}}" data-blogId="{{item._id}}" bind:goDetail="goDetail"></s-blog-card>
 
     </block>
 </scroll-view>

@@ -26,5 +26,6 @@
   right: 10rpx;
   top: 10rpx;
   padding: 20rpx;
+  font-size: 30rpx;
 }
 /*# sourceMappingURL=bottom-modal.css.map */

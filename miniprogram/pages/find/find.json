@@ -4,7 +4,7 @@
     "s-navbar":"/components/navbar/navbar",
     "s-search":"/components/search/search",
     "s-login": "/components/login/login",
-    "s-blogcard":"/components/blog-card/blog-card"
+    "s-blog-card":"/components/blog-card/blog-card"
   },
   "enablePullDownRefresh": true
 }

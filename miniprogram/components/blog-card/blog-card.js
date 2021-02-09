@@ -5,7 +5,11 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    blog:Object
+    blog:Object,
+    isDetail:{
+      type:Boolean,
+      value:false
+    }
   },
   observers:{
     ['blog.createTime'](val){
@@ -33,6 +37,9 @@ Component({
         urls: this.properties.blog.imgs,
         current:e.target.dataset.imgsrc
       })
+    },
+    goDetail(){
+      this.triggerEvent('goDetail')
     }
   }
 })

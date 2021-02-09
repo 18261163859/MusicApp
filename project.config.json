@@ -83,6 +83,12 @@
           "pathName": "pages/find/find",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/blog-detail/blog-detail",
+          "pathName": "pages/blog-detail/blog-detail",
+          "query": "blogId=b00064a7602163d603a857c3146efeb6",
+          "scene": null
         }
       ]
     }

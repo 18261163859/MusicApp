@@ -18,7 +18,19 @@ exports.main = async (event, context) => {
   })
 
   app.router('list',async (ctx,next)=>{
-    let blogList=await blogCollection.skip(event.start).limit(event.count)
+
+    const keyword=event.keyword
+    let w={}
+    if(keyword.trim()!=''){
+      w={
+        content:new db.RegExp({
+          regexp:keyword,
+          options:'i'
+        })
+      }
+    }
+
+    let blogList=await blogCollection.where(w).skip(event.start).limit(event.count)
     .orderBy('createTime','desc').get().then(res=>{
       console.log('##########'+res.data)
       return res.data
@@ -26,6 +38,20 @@ exports.main = async (event, context) => {
       console.log('&&&&&&&'+err)
     })
     ctx.body=blogList
+  })
+
+  app.router('detail',async (ctx,next)=>{
+    let blogId=event.blogId
+    console.log('$$$$$$'+blogId)
+    const blog=await blogCollection.aggregate().match({
+      _id:blogId
+    }).lookup({
+      from:'blog-comment',
+      localField:'_id',
+      foreignField:'blogId',
+      as:'commentList'
+    }).end()
+    ctx.body=blog
   })
 
   return app.serve()

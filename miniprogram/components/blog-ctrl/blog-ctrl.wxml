@@ -1,0 +1,25 @@
+<view class="ctrl">
+  <!-- 评论 -->
+  <view class="ctrl-item" bind:tap="onComment">
+    <i class="iconfont icon-pinglun"></i>
+    <text class="item">评论</text>
+  </view>
+  <!-- 分享图标和文字 -->
+  <view class="ctrl-item">
+    <button open-type="share" data-blogid="{{blogId}}" data-blog="{{blog}}" class="share-btn">
+      <i class="iconfont icon-fenxiang"></i>
+      <text class="item">分享</text>
+    </button>
+  </view>
+</view>
+
+<!-- 授权登录组件 -->
+<s-login modalShow="{{loginShow}}" bind:loginsuccess="onLoginsuccess" bind:loginfail="onLoginfail"></s-login>
+
+<!-- 底部弹窗，向插槽传评论的元素 -->
+<s-bottom-modal modalShow="{{modalShow}}">
+  <view slot="modal-content">
+    <textarea bindinput="onInput" name="content" class="comment-content" placeholder="写评论" value="{{content}}" fixed="true"></textarea>
+    <view class="send" bind:tap="onSend">发送</view>
+  </view>
+</s-bottom-modal>

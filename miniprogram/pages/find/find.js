@@ -18,6 +18,7 @@ Page({
     wx.cloud.callFunction({
       name:'blog',
       data:{
+        keyword,
         start,
         count:10,
         $url:'list',
@@ -34,8 +35,12 @@ Page({
     })
   },
   onSearch(e){
+    console.log(e.detail)
+    this.setData({
+      blogs:[]
+    })
     keyword=e.detail.keyword
-    console.log(keyword)
+    this._loadBlogList(0)
   },
   onPublish(){
     //获取用户的当前设置。返回值中只会出现小程序已经向用户请求过的权限，根据是否具有scop.userInfo属性，判断用户是否授权
@@ -73,7 +78,11 @@ Page({
       content: ''
     })
   },
-
+  goDetail(event){
+    wx.navigateTo({
+      url: '../../pages/blog-detail/blog-detail?blogId='+event.target.dataset.blogid,
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

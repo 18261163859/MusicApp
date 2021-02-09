@@ -1,7 +1,8 @@
 <!--components/blog-card/blog-card.wxml-->
 <view class="blog">
-  <!-- 头部 -->
-  <view class="blog-header">
+  <view class="blog-body" catch:tap="goDetail">
+    <!-- 头部 -->
+  <view class="blog-header" >
     <!-- 头像 -->
     <image class="blog-avatar" src="{{blog.avatarUrl}}"></image>
     <!-- 昵称、头像容量、垂直flex -->
@@ -23,5 +24,9 @@
       </view>
     </block>
   </view>
+  </view>
+  
+
+  <s-blog-ctrl wx:if="{{!isDetail}}" blogId="{{blog._id}}" blog="{{blog}}"></s-blog-ctrl>
 
 </view>
